@@ -1111,7 +1111,7 @@ namespace reshade
 
 			if (_show_menu)
 			{
-				ImGui::SetNextWindowPos(ImVec2((float)_width, (float)_height), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowPos(ImVec2(_width/2.0f, _height/2.0f), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
 				ImGui::SetNextWindowSize(ImVec2(710, 650), ImGuiCond_Once);
 				ImGui::Begin("ReShade " VERSION_STRING_FILE " by crosire###Main", &_show_menu,
 					ImGuiWindowFlags_MenuBar |
@@ -1124,7 +1124,7 @@ namespace reshade
 
 			if (_show_error_log)
 			{
-				ImGui::SetNextWindowPos(ImVec2(_width, _height), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowPos(ImVec2(_width/2.0f, _height/2.0f), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
 				ImGui::SetNextWindowSize(ImVec2(800, 300), ImGuiCond_Once);
 				ImGui::Begin("Error Log", &_show_error_log);
 				ImGui::PushTextWrapPos();
