@@ -738,9 +738,9 @@ namespace reshade
 		imgui_style.Colors[ImGuiCol_Header] = ImVec4(_imgui_col_active[0], _imgui_col_active[1], _imgui_col_active[2], 0.76f);
 		imgui_style.Colors[ImGuiCol_HeaderHovered] = ImVec4(_imgui_col_active[0], _imgui_col_active[1], _imgui_col_active[2], 0.86f);
 		imgui_style.Colors[ImGuiCol_HeaderActive] = ImVec4(_imgui_col_active[0], _imgui_col_active[1], _imgui_col_active[2], 1.00f);
-		imgui_style.Colors[ImGuiCol_Column] = ImVec4(_imgui_col_text[0], _imgui_col_text[1], _imgui_col_text[2], 0.32f);
-		imgui_style.Colors[ImGuiCol_ColumnHovered] = ImVec4(_imgui_col_text[0], _imgui_col_text[1], _imgui_col_text[2], 0.78f);
-		imgui_style.Colors[ImGuiCol_ColumnActive] = ImVec4(_imgui_col_text[0], _imgui_col_text[1], _imgui_col_text[2], 1.00f);
+		imgui_style.Colors[ImGuiCol_Separator] = ImVec4(_imgui_col_text[0], _imgui_col_text[1], _imgui_col_text[2], 0.32f);
+		imgui_style.Colors[ImGuiCol_SeparatorHovered] = ImVec4(_imgui_col_text[0], _imgui_col_text[1], _imgui_col_text[2], 0.78f);
+		imgui_style.Colors[ImGuiCol_SeparatorActive] = ImVec4(_imgui_col_text[0], _imgui_col_text[1], _imgui_col_text[2], 1.00f);
 		imgui_style.Colors[ImGuiCol_ResizeGrip] = ImVec4(_imgui_col_active[0], _imgui_col_active[1], _imgui_col_active[2], 0.20f);
 		imgui_style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(_imgui_col_active[0], _imgui_col_active[1], _imgui_col_active[2], 0.78f);
 		imgui_style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(_imgui_col_active[0], _imgui_col_active[1], _imgui_col_active[2], 1.00f);
@@ -1028,7 +1028,7 @@ namespace reshade
 		if (show_splash)
 		{
 			ImGui::SetNextWindowPos(ImVec2(10, 10));
-			ImGui::SetNextWindowSize(ImVec2(_width - 20.0f, ImGui::GetItemsLineHeightWithSpacing() * 3), ImGuiSetCond_Appearing);
+			ImGui::SetNextWindowSize(ImVec2(_width - 20.0f, ImGui::GetItemsLineHeightWithSpacing() * 3), ImGuiCond_Appearing);
 			ImGui::Begin("Splash Screen", nullptr, ImVec2(), -1,
 				ImGuiWindowFlags_NoTitleBar |
 				ImGuiWindowFlags_NoScrollbar |
@@ -1111,8 +1111,8 @@ namespace reshade
 
 			if (_show_menu)
 			{
-				ImGui::SetNextWindowPosCenter(ImGuiSetCond_Once);
-				ImGui::SetNextWindowSize(ImVec2(710, 650), ImGuiSetCond_Once);
+				ImGui::SetNextWindowPos(ImVec2((float)_width, (float)_height), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowSize(ImVec2(710, 650), ImGuiCond_Once);
 				ImGui::Begin("ReShade " VERSION_STRING_FILE " by crosire###Main", &_show_menu,
 					ImGuiWindowFlags_MenuBar |
 					ImGuiWindowFlags_NoCollapse);
@@ -1124,8 +1124,8 @@ namespace reshade
 
 			if (_show_error_log)
 			{
-				ImGui::SetNextWindowPosCenter(ImGuiSetCond_Once);
-				ImGui::SetNextWindowSize(ImVec2(800, 300), ImGuiSetCond_Once);
+				ImGui::SetNextWindowPos(ImVec2(_width, _height), ImGuiCond_Once, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowSize(ImVec2(800, 300), ImGuiCond_Once);
 				ImGui::Begin("Error Log", &_show_error_log);
 				ImGui::PushTextWrapPos();
 
@@ -1951,7 +1951,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			{
 				_selected_technique = id;
 			}
-			if (ImGui::IsItemHoveredRect())
+			if (ImGui::IsItemRectHovered())
 			{
 				hovered_technique_index = id;
 			}
